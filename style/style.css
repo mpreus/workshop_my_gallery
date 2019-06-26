@@ -1,0 +1,111 @@
+html {
+    box-sizing: border-box;
+    background: #ffc600;
+    font-family: 'helvetica neue';
+    font-size: 20px;
+    font-weight: 200;
+}
+
+body {
+    margin: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+.panels {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex; /* panels with photos (inside 'panels' class) side by side */
+} 
+
+.panel {
+    background: #0c3499;
+    box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+    color: white;
+    text-align: center;
+    align-items: center;
+    /* Safari transitionend event.propertyName === flex */
+    /* Chrome + FF transitionend event.propertyName === flex-grow */
+    transition: 
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        background 0.2s;
+    font-size: 20px;
+    background-size: cover;
+    background-position: center;
+    flex: 1;    /* panels evenly on the whole width of the screen */
+    justify-content: center;
+    align-items: center;
+    display: flex; 
+    flex-direction: column; /* for text elements */
+}
+
+/* photos in panels are made and developed by Maciej Preus */
+.panel1 { 
+    background-image:url("../images/Moss2.png"); 
+}
+
+.panel2 { 
+    background-image:url("../images/Chestnut.png"); 
+}
+
+.panel3 { 
+    background-image:url("../images/Flower.png"); 
+}
+
+.panel4 { 
+    background-image:url("../images/Moss1.png"); 
+}
+.panel5 { 
+    background-image:url("../images/Berry.png"); 
+}
+
+/* Flex Children */
+.panel > * {
+    margin: 0;
+    width: 100%;
+    transition: transform 0.5s;
+    /* center the text on the photos */
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* hiding top element */
+.panel > *:first-child {
+    transform: translateY(-100%);
+}
+/* shifted to the top */
+.panel.open-active > *:first-child { 
+    transform: translateY(0);
+}
+
+/* hiding bottom element */
+.panel > *:last-child {
+    transform: translateY(100%);
+}
+/* shifted to the bottom */
+.panel.open-active > *:last-child {
+    transform: translateY(0);
+}
+
+.panel p {
+  text-transform: uppercase;
+  font-family: 'Amatic SC', cursive;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+  font-size: 2em;
+}
+
+/* bigger and thicker main words */
+.panel p:nth-child(2) {
+    font-size: 4em; 
+    font-weight: 700;
+}
+
+.panel.open {
+    font-size: 40px;
+    flex: 5; /* 5 times more wide than the others */
+}
